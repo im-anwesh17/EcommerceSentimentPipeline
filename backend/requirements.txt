@@ -1,0 +1,6 @@
+django
+djangorestframework
+psycopg2-binary
+kafka-python
+dj-database-url
+python-dotenv

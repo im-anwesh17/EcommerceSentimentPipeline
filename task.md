@@ -4,37 +4,37 @@
 
 ### Phase 1: Project Initialization & Infrastructure Scaffold
 - `[x]` Create the root directory `C:\cpp\EcommerceSentimentPipeline`.
-- `[ ]` Create an `.env.example` file with configuration placeholders (Database credentials, Kafka brokers).
-- `[ ]` **Create `docker-compose.yml`**:
-  - `[ ]` Define `postgres` service (PostgreSQL 15+) with persistent volume mapping.
-  - `[ ]` Define `zookeeper` service for Kafka orchestration.
-  - `[ ]` Define `kafka` service with exposed ports (9092) and configurations.
-  - `[ ]` Configure an isolated Docker bridge network (e.g., `pipeline-net`).
+- `[x]` Create an `.env.example` file with configuration placeholders (Database credentials, Kafka brokers).
+- `[x]` **Create `docker-compose.yml`**:
+  - `[x]` Define `postgres` service (PostgreSQL 15+) with persistent volume mapping.
+  - `[x]` Define `zookeeper` service for Kafka orchestration.
+  - `[x]` Define `kafka` service with exposed ports (9092) and configurations.
+  - `[x]` Configure an isolated Docker bridge network (e.g., `pipeline-net`).
 
 ### Phase 2: Django Backend Setup & App Scaffold
-- `[ ]` Create a `backend` subdirectory.
-- `[ ]` Initialize Django project (`config`) and create the `reviews` app.
-- `[ ]` Create `backend/requirements.txt` (needs `django`, `djangorestframework`, `psycopg2-binary`, `kafka-python`, `dj-database-url`).
-- `[ ]` Configure `settings.py` to use PostgreSQL via `dj-database-url` and add REST Framework.
+- `[x]` Create a `backend` subdirectory.
+- `[x]` Initialize Django project (`config`) and create the `reviews` app.
+- `[x]` Create `backend/requirements.txt` (needs `django`, `djangorestframework`, `psycopg2-binary`, `kafka-python`, `dj-database-url`).
+- `[x]` Configure `settings.py` to use PostgreSQL via `dj-database-url` and add REST Framework.
 
 ### Phase 3: Core Business Logic (Fat Models & Thin Views)
-- `[ ]` Define `Product` model in `reviews/models.py` (name, description, price, created_at).
-- `[ ]` Define `Review` model in `reviews/models.py` (product FK, text, rating, sentiment_score, sentiment_label, created_at).
-- `[ ]` Create initial database migrations for the new models.
-- `[ ]` Create `reviews/serializers.py` with `ProductSerializer` and `ReviewSerializer`.
-- `[ ]` Create `reviews/views.py` using DRF `ModelViewSet` to maintain thin views.
-- `[ ]` Configure `urls.py` routers for the API endpoints.
+- `[x]` Define `Product` model in `reviews/models.py` (name, description, price, created_at).
+- `[x]` Define `Review` model in `reviews/models.py` (product FK, text, rating, sentiment_score, sentiment_label, created_at).
+- `[x]` Create initial database migrations for the new models.
+- `[x]` Create `reviews/serializers.py` with `ProductSerializer` and `ReviewSerializer`.
+- `[x]` Create `reviews/views.py` using DRF `ModelViewSet` to maintain thin views.
+- `[x]` Configure `urls.py` routers for the API endpoints.
 
 ### Phase 4: Kafka Producer Integration
-- `[ ]` Create `reviews/kafka_producer.py` to handle the Kafka connection.
-- `[ ]` Implement a helper function to publish review payloads (Review ID, Product ID, Text).
-- `[ ]` Hook into Django's `post_save` signal on the `Review` model to trigger the producer.
-- `[ ]` Ensure the producer executes asynchronously (e.g., via `threading.Thread`).
+- `[x]` Create `reviews/kafka_producer.py` to handle the Kafka connection.
+- `[x]` Implement a helper function to publish review payloads (Review ID, Product ID, Text).
+- `[x]` Hook into Django's `post_save` signal on the `Review` model to trigger the producer.
+- `[x]` Ensure the producer executes asynchronously (e.g., via `threading.Thread`).
 
 ### Phase 5: Containerization (Backend)
-- `[ ]` Write `backend/Dockerfile` using a lightweight Python base image (`python:3.11-slim`).
-- `[ ]` Create an `entrypoint.sh` script to auto-run DB migrations and start Django.
-- `[ ]` Add the `django_backend` service to `docker-compose.yml`, depending on `postgres` and `kafka`.
+- `[x]` Write `backend/Dockerfile` using a lightweight Python base image (`python:3.11-slim`).
+- `[x]` Create an `entrypoint.sh` script to auto-run DB migrations and start Django.
+- `[x]` Add the `django_backend` service to `docker-compose.yml`, depending on `postgres` and `kafka`.
 
 ---
 
