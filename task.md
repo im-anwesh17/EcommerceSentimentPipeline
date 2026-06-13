@@ -41,24 +41,24 @@
 ## 📅 Day 2: Stream Processing, Frontend, & E2E Testing
 
 ### Phase 6: NLP Consumer (Stream Processing)
-- `[ ]` Create a `consumer` subdirectory.
-- `[ ]` Create `consumer/requirements.txt` (needs `kafka-python`, `psycopg2-binary`, `nltk`, `vaderSentiment`).
-- `[ ]` Write `consumer/Dockerfile` using a lightweight Python base image.
-- `[ ]` Develop `consumer/main.py` Python NLP Consumer script using NLTK/VADER.
-- `[ ]` Implement PostgreSQL connection pooling and retry mechanisms in the consumer to update `Review` records.
-- `[ ]` Add `nlp_consumer` service to `docker-compose.yml`, depending on `postgres` and `kafka`.
+- `[x]` Create a `consumer` subdirectory.
+- `[x]` Create `consumer/requirements.txt` (needs `kafka-python`, `psycopg2-binary`, `nltk`, `vaderSentiment`).
+- `[x]` Write `consumer/Dockerfile` using a lightweight Python base image.
+- `[x]` Develop `consumer/main.py` Python NLP Consumer script using NLTK/VADER.
+- `[x]` Implement PostgreSQL connection pooling and retry mechanisms in the consumer to update `Review` records.
+- `[x]` Add `nlp_consumer` service to `docker-compose.yml`, depending on `postgres` and `kafka`.
 
 ### Phase 7: Frontend Application (Streamlit)
-- `[ ]` Create a `frontend` subdirectory.
-- `[ ]` Create `frontend/requirements.txt` (needs `streamlit`, `pandas`, `requests`, `plotly`).
-- `[ ]` Write `frontend/Dockerfile` for the Streamlit application.
-- `[ ]` Build `frontend/app.py` Streamlit Dashboard for sentiment visualization.
-- `[ ]` Implement state management and data polling (calling Django API) in Streamlit.
-- `[ ]` Add `streamlit_frontend` service to `docker-compose.yml`, depending on `django_backend`.
+- `[x]` Create a `frontend` subdirectory.
+- `[x]` Create `frontend/requirements.txt` (needs `streamlit`, `pandas`, `requests`, `plotly`).
+- `[x]` Write `frontend/Dockerfile` for the Streamlit application.
+- `[x]` Build `frontend/app.py` Streamlit Dashboard for sentiment visualization.
+- `[x]` Implement state management and data polling (calling Django API) in Streamlit.
+- `[x]` Add `streamlit_frontend` service to `docker-compose.yml`, depending on `django_backend`.
 
 ### Phase 8: End-to-End Testing & Polish
-- `[ ]` Run `docker-compose up --build` to orchestrate all services.
-- `[ ]` Seed the database with sample products via the Django admin or API.
-- `[ ]` Send mock reviews via API and verify Kafka message delivery.
-- `[ ]` Verify the consumer correctly calculates sentiment and updates DB records.
-- `[ ]` Verify the Streamlit dashboard updates in real-time.
+- `[x]` Run `docker-compose up --build` to orchestrate all services.
+- `[x]` Seed the database with sample products via the Django admin or API.
+- `[x]` Send mock reviews via API and verify Kafka message delivery.
+- `[x]` Verify the consumer correctly calculates sentiment and updates DB records.
+- `[x]` Verify the Streamlit dashboard updates in real-time.

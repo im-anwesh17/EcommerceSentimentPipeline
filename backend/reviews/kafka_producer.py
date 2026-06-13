@@ -1,7 +1,10 @@
 import json
 import threading
+import logging
 from kafka import KafkaProducer
 from django.conf import settings
+
+logger = logging.getLogger(__name__)
 
 # Initialize the producer lazily to avoid connection issues during tests/migrations
 _producer = None
@@ -15,7 +18,7 @@ def get_producer():
                 value_serializer=lambda v: json.dumps(v).encode('utf-8')
             )
         except Exception as e:
-            print(f"Error connecting to Kafka: {e}")
+            logger.error(f"Error connecting to Kafka: {e}")
     return _producer
 
 def publish_review_message(review_id, product_id, text):
@@ -34,7 +37,7 @@ def publish_review_message(review_id, product_id, text):
             producer.send(settings.KAFKA_REVIEW_TOPIC, value=payload)
             producer.flush()
         except Exception as e:
-            print(f"Failed to publish review to Kafka: {e}")
+            logger.error(f"Failed to publish review to Kafka: {e}")
 
 def publish_review_async(review_id, product_id, text):
     """

@@ -73,5 +73,40 @@ services:
       - postgres
       - kafka
     networks:
-      - pipeline-net
+      pipeline-net:
+        aliases:
+          - django-api
     command: ["/app/entrypoint.sh"]
+
+  nlp_consumer:
+    build:
+      context: ./consumer
+      dockerfile: Dockerfile
+    container_name: nlp_consumer
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      KAFKA_BROKERS: kafka:29092
+      KAFKA_REVIEW_TOPIC: ${KAFKA_REVIEW_TOPIC:-reviews_topic}
+    depends_on:
+      - postgres
+      - kafka
+    networks:
+      - pipeline-net
+
+  streamlit_frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: streamlit_frontend
+    ports:
+      - "8501:8501"
+    environment:
+      DJANGO_API_URL: "http://django-api:8000/api/reviews/"
+    depends_on:
+      - django_backend
+    networks:
+      - pipeline-net
