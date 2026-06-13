@@ -1,5 +1,7 @@
 # Live E-Commerce Sentiment Analysis Pipeline
 
+![Streamlit Dashboard](assets/dashboard.png)
+
 An end-to-end sentiment analysis pipeline designed to process e-commerce product reviews in real time. Built with Django, Kafka, Python (NLTK/VADER), PostgreSQL, and Streamlit, all fully containerized with Docker Compose.
 
 ## Architecture
